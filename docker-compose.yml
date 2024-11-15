@@ -1,0 +1,9 @@
+services:
+  app:
+    build: .
+    container_name: fastapi-voice-cloning
+    ports:
+      - "8765:80"
+    volumes:
+      - .:/app
+    restart: always

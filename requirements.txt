@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+moviepy
+pydub
+elevenlabs
+ffmpeg-python
+python-decouple
