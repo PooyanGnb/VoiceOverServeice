@@ -6,3 +6,6 @@ elevenlabs
 ffmpeg-python
 python-decouple
 python-multipart
+openai
+langchain
+langchain_openai

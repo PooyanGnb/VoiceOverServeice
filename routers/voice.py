@@ -21,6 +21,9 @@ async def voice_over(background_tasks: BackgroundTasks, file: UploadFile = File(
     # background_tasks.add_task(cleanup_directory, working_dir)
 
     # extract the audio from the video
-    extract_audio(video_path, working_dir)
+    original_audio = extract_audio(video_path, working_dir)
 
-    # return True
+
+    text = transcribe_audio(original_audio)
+
+    return text
