@@ -1,11 +1,14 @@
 from decouple import config
 from moviepy.editor import VideoFileClip
-from openai import OpenAI # pip install -U openai
+from openai import OpenAI 
+from langchain_openai import OpenAI as Translate
 
 ELEVENLABS_API_KEY = config("elevenlabs_api_key")
+base_url="https://api.avalai.ir/v1"
+api_key="aa-pAkuHIOE46mbKqVaqwXhuN2k7rf9fUXJ5CyFBR1jEAV4v80w"
 client = OpenAI(
-    base_url="https://api.avalai.ir/v1",
-    api_key="aa-pAkuHIOE46mbKqVaqwXhuN2k7rf9fUXJ5CyFBR1jEAV4v80w"
+    base_url=base_url,
+    api_key=api_key
 )
 
 def extract_audio(video_path, folder):
@@ -22,3 +25,12 @@ def transcribe_audio(audio_path):
             response_format="text"
         )
     return transcript
+
+def translate_text(text, target_language):
+    translation = Translate(
+        model="gpt-3.5-turbo-instruct",
+        base_url=base_url,
+        api_key=api_key
+    )
+    result = translation.invoke(f"Translate the following Persian text to {target_language}:\n\n{text}")
+    return result

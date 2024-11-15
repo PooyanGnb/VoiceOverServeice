@@ -17,13 +17,17 @@ async def voice_over(background_tasks: BackgroundTasks, file: UploadFile = File(
     with open(video_path, "wb") as buffer:
         buffer.write(await file.read())
 
+    # If no language parameter is provided, default to "en"
+    language = language if language else "en"
+
     # Add cleanup task
     # background_tasks.add_task(cleanup_directory, working_dir)
 
     # extract the audio from the video
     original_audio = extract_audio(video_path, working_dir)
 
-
     text = transcribe_audio(original_audio)
+
+    text = translate_text(text, language)
 
     return text
