@@ -5,3 +5,4 @@ pydub
 elevenlabs
 ffmpeg-python
 python-decouple
+python-multipart

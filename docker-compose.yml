@@ -5,5 +5,5 @@ services:
     ports:
       - "8765:80"
     volumes:
-      - .:/app
+      - .:/code
     restart: always
